@@ -19,7 +19,7 @@ import { format } from "date-fns";
 import { LabelTooltip } from "@/components/ui/label-tooltip";
 import { DateInput } from "@/components/ui/date-input";
 import { cn } from "@/lib/utils/helpers";
-import type { EventSharedFormValues } from "@/schemas/league";
+import type { EventSharedFormValues } from "@/validators/league";
 
 interface SettingsFieldsetProps {
   allowAllStatuses?: boolean;

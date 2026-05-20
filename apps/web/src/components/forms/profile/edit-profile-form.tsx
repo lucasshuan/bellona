@@ -7,11 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   useEditProfileSchema,
   type EditProfileValues,
-} from "@/schemas/profile";
+} from "@/validators/profile";
 import { X, Check, LoaderCircle } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { toast } from "sonner";
-import { checkUsernameAvailability, updateProfile } from "@/actions/user";
+import { checkUsernameAvailability, updateProfile } from "@/lib/actions/user";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils/helpers";

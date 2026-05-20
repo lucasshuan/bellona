@@ -17,7 +17,7 @@ import type {
   GetGameQuery,
   GetLeaguesQuery,
 } from "@/lib/apollo/generated/graphql";
-import type { SimpleGame } from "@/actions/game";
+import type { SimpleGame } from "@/lib/actions/game";
 
 type GameNode = NonNullable<GetGameQuery["game"]>;
 type LeagueNode = NonNullable<GetLeaguesQuery["leagues"]["nodes"][number]>;

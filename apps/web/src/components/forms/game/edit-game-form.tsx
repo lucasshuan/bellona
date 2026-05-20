@@ -4,14 +4,14 @@ import { useTransition, useEffect, useState, useRef } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@apollo/client/react";
-import { useEditGameSchema, type EditGameValues } from "@/schemas/game";
+import { useEditGameSchema, type EditGameValues } from "@/validators/game";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import {
   updateGame,
   checkGameSlugAvailability,
   setGameStaff,
-} from "@/actions/game";
+} from "@/lib/actions/game";
 import {
   type Game,
   type GetGameStaffQuery,

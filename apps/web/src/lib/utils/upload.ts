@@ -1,4 +1,4 @@
-import { requestUploadUrl } from "@/actions/game";
+import { requestUploadUrl } from "@/lib/actions/game";
 
 /**
  * If value is a File, uploads it to S3 and returns the stored path.

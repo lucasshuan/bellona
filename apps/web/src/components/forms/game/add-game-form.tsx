@@ -3,10 +3,10 @@
 import { useTransition, useEffect, useState, useRef } from "react";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAddGameSchema, type AddGameValues } from "@/schemas/game";
+import { useAddGameSchema, type AddGameValues } from "@/validators/game";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { createGame, checkGameSlugAvailability } from "@/actions/game";
+import { createGame, checkGameSlugAvailability } from "@/lib/actions/game";
 import { cn } from "@/lib/utils/helpers";
 import { resolveImageValue } from "@/lib/utils/upload";
 import { ImageUploadInput } from "@/components/ui/image-upload-input";

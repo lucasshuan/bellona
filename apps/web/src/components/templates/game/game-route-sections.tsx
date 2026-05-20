@@ -13,7 +13,7 @@ import { useTranslations } from "next-intl";
 
 import { AddEventButton } from "@/components/triggers/game/add-event-button";
 import { GameEventsSection } from "@/components/ui/game-events-section";
-import type { SimpleGame } from "@/actions/game";
+import type { SimpleGame } from "@/lib/actions/game";
 import type {
   GetGameQuery,
   GetLeaguesQuery,

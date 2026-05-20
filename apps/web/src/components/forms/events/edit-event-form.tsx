@@ -9,8 +9,11 @@ import {
 } from "react";
 import { useForm, FormProvider, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEditLeagueSchema, type EditLeagueValues } from "@/schemas/league";
-import { updateLeague, checkLeagueSlugAvailability } from "@/actions/event";
+import {
+  useEditLeagueSchema,
+  type EditLeagueValues,
+} from "@/validators/league";
+import { updateLeague, checkLeagueSlugAvailability } from "@/lib/actions/event";
 import { resolveImageValue } from "@/lib/utils/upload";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";

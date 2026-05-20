@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Trash2, AlertTriangle } from "lucide-react";
 
 import { ConfirmModal } from "@/components/ui/confirm-modal";
-import { deleteLeague } from "@/actions/event";
+import { deleteLeague } from "@/lib/actions/event";
 
 interface DeleteLeagueModalProps {
   eventId: string;

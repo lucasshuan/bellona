@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Trash2, AlertTriangle } from "lucide-react";
 
 import { ConfirmModal } from "@/components/ui/confirm-modal";
-import { deleteGame } from "@/actions/game";
+import { deleteGame } from "@/lib/actions/game";
 
 interface DeleteGameModalProps {
   gameSlug: string;

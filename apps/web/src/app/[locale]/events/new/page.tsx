@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import { getServerAuthSession } from "@/auth";
 import { CreateEventTemplate } from "@/components/templates/events/create-event-template";
-import type { SimpleGame } from "@/actions/game";
+import type { SimpleGame } from "@/lib/actions/game";
 import { getCachedGame } from "@/lib/server/game-page-data";
 
 type NewEventPageProps = {

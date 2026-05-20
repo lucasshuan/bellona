@@ -21,7 +21,7 @@ import { LabelTooltip } from "@/components/ui/label-tooltip";
 import { TiptapEditor } from "@/components/ui/tiptap-editor";
 import { ImageUploadInput } from "@/components/ui/image-upload-input";
 import { cn, slugify } from "@/lib/utils/helpers";
-import type { EventSharedFormValues } from "@/schemas/league";
+import type { EventSharedFormValues } from "@/validators/league";
 
 interface GeneralFieldsetProps {
   onSlugStatusChange: (isChecking: boolean, hasConflict: boolean) => void;

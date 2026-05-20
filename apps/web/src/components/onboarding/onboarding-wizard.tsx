@@ -36,8 +36,11 @@ import confetti from "canvas-confetti";
 import { cn } from "@/lib/utils/helpers";
 import { cdnUrl } from "@/lib/utils/cdn";
 import { Button } from "@/components/ui/button";
-import { checkUsernameAvailability, completeOnboarding } from "@/actions/user";
-import { getGamesSimple, type SimpleGame } from "@/actions/game";
+import {
+  checkUsernameAvailability,
+  completeOnboarding,
+} from "@/lib/actions/user";
+import { getGamesSimple, type SimpleGame } from "@/lib/actions/game";
 import { CountryCombobox } from "@/components/ui/country-combobox";
 
 /* ────────────────────────────── types & schema ────────────────────────────── */

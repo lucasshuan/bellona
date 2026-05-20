@@ -8,7 +8,7 @@ import { useRouter } from "@/i18n/routing";
 import { AuthModal } from "@/components/modals/auth/auth-modal";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils/helpers";
-import type { SimpleGame } from "@/actions/game";
+import type { SimpleGame } from "@/lib/actions/game";
 
 interface AddEventButtonProps {
   gameId: string;

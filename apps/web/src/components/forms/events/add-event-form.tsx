@@ -7,9 +7,9 @@ import {
   useAddLeagueSchema,
   type AddLeagueValues,
   LEAGUE_DEFAULT_SETTINGS,
-} from "@/schemas/league";
-import { createLeague, checkLeagueSlugAvailability } from "@/actions/event";
-import { type SimpleGame } from "@/actions/game";
+} from "@/validators/league";
+import { createLeague, checkLeagueSlugAvailability } from "@/lib/actions/event";
+import { type SimpleGame } from "@/lib/actions/game";
 import { resolveImageValue } from "@/lib/utils/upload";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
