@@ -20,6 +20,7 @@ export type GameOption = {
 interface GameFilterComboboxProps {
   games: GameOption[];
   currentGame?: string;
+  onGameChange?: (slug: string | null) => void;
   placeholder?: string;
   noResultsText?: string;
   className?: string;
@@ -29,6 +30,7 @@ interface GameFilterComboboxProps {
 export function GameFilterCombobox({
   games,
   currentGame,
+  onGameChange,
   placeholder = "Game",
   noResultsText = "No games found",
   className,
@@ -60,19 +62,23 @@ export function GameFilterCombobox({
 
   const select = useCallback(
     (slug: string | null) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (slug) {
-        params.set("game", slug);
+      if (onGameChange) {
+        onGameChange(slug);
       } else {
-        params.delete("game");
+        const params = new URLSearchParams(searchParams.toString());
+        if (slug) {
+          params.set("game", slug);
+        } else {
+          params.delete("game");
+        }
+        const query = params.toString();
+        router.push(query ? `${pathname}?${query}` : pathname);
       }
-      const query = params.toString();
-      router.push(query ? `${pathname}?${query}` : pathname);
       setIsOpen(false);
       setQuery("");
       setIsEditing(false);
     },
-    [router, pathname, searchParams],
+    [onGameChange, router, pathname, searchParams],
   );
 
   const close = useCallback(() => {

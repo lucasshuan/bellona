@@ -265,8 +265,6 @@
     "participantsStat": "Participantes",
     "registrationEventsStat": "Inscrições",
     "activeEventsStat": "Ativos",
-    "eventListTitle": "Eventos do jogo",
-    "eventListDescription": "Ligas e torneios ficam juntos aqui. Use os filtros para encontrar a competição certa.",
     "eventListTitle": "Eventos",
     "eventListDescription": "Competições contínuas com ranking, participantes e classificação deste jogo.",
     "eventListSummary": "{shown} de {total}",
@@ -603,8 +601,8 @@
       "submit": "Excluir Jogo",
       "submitting": "Excluindo...",
       "cancel": "Cancelar",
-      "warning": "Voc\u00ea est\u00e1 prestes a arquivar {gameName}. Ele deixar\u00e1 de ser vis\u00edvel e {count, plural, one {seu # evento} other {seus # eventos}} tamb\u00e9m ser\u00e1(\u00e3o) arquivado(s). Isso s\u00f3 pode ser desfeito por um administrador.",
-      "warningNoEvents": "Voc\u00ea est\u00e1 prestes a arquivar {gameName}. Ele deixar\u00e1 de ser vis\u00edvel. Isso s\u00f3 pode ser desfeito por um administrador.",
+      "warning": "Você está prestes a arquivar {gameName}. Ele deixará de ser visível e {count, plural, one {seu # evento} other {seus # eventos}} também será(ão) arquivado(s). Isso só pode ser desfeito por um administrador.",
+      "warningNoEvents": "Você está prestes a arquivar {gameName}. Ele deixará de ser visível. Isso só pode ser desfeito por um administrador.",
       "success": "Jogo arquivado com sucesso.",
       "error": "Falha ao arquivar o jogo."
     },
@@ -613,7 +611,7 @@
       "submit": "Excluir Evento",
       "submitting": "Excluindo...",
       "cancel": "Cancelar",
-      "warning": "Voc\u00ea est\u00e1 prestes a arquivar \u201c{eventName}\u201d. Ele deixar\u00e1 de ser vis\u00edvel. Isso s\u00f3 pode ser desfeito por um administrador.",
+      "warning": "Você está prestes a arquivar “{eventName}”. Ele deixará de ser visível. Isso só pode ser desfeito por um administrador.",
       "success": "Evento arquivado com sucesso.",
       "error": "Falha ao arquivar o evento."
     },

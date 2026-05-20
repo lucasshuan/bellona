@@ -2,21 +2,27 @@
 
 import { useState } from "react";
 import { ChevronDown, Settings2 } from "lucide-react";
-import type { Route } from "next";
-import { Link } from "@/i18n/routing";
-import { SearchInput } from "@/components/ui/search-input";
+import { LocalSearchInput } from "@/components/ui/local-search-input";
 import {
   GameFilterCombobox,
   type GameOption,
 } from "@/components/ui/game-filter-combobox";
 import { cn } from "@/lib/utils/helpers";
 
-type Filters = {
-  search?: string;
-  sort?: string;
-  game?: string;
-  status?: string;
-  system?: string;
+export type LeagueFilters = {
+  search: string;
+  sort: string;
+  game: string;
+  status: string;
+  system: string;
+};
+
+export const EMPTY_LEAGUE_FILTERS: LeagueFilters = {
+  search: "",
+  sort: "",
+  game: "",
+  status: "",
+  system: "",
 };
 
 type LeagueFilterTranslations = {
@@ -95,25 +101,15 @@ const SORT_OPTIONS: { value: string; labelKey: TextKey }[] = [
   { value: "name", labelKey: "sortAlphabetical" },
 ];
 
-function buildUrl(base: Filters, overrides: Partial<Filters>): string {
-  const merged = { ...base, ...overrides };
-  const clean: Record<string, string> = {};
-
-  for (const [key, value] of Object.entries(merged)) {
-    if (value) clean[key] = value;
-  }
-
-  const query = new URLSearchParams(clean).toString();
-  return query ? `?${query}` : "/leagues";
-}
-
 export function LeagueFilterControls({
   filters,
+  onFiltersChange,
   games,
   searchPlaceholder,
   translations,
 }: {
-  filters: Filters;
+  filters: LeagueFilters;
+  onFiltersChange: (patch: Partial<LeagueFilters>) => void;
   games: GameOption[];
   searchPlaceholder: string;
   translations: LeagueFilterTranslations;
@@ -129,6 +125,10 @@ export function LeagueFilterControls({
   const chipIdle =
     "border-border text-muted hover:border-gold-dim/55 hover:text-foreground";
 
+  function resetFilters() {
+    onFiltersChange(EMPTY_LEAGUE_FILTERS);
+  }
+
   return (
     <div
       className={cn(
@@ -137,8 +137,9 @@ export function LeagueFilterControls({
           "md:grid-cols-[minmax(0,1fr)_minmax(12rem,16rem)_auto]",
       )}
     >
-      <SearchInput
-        defaultValue={filters.search}
+      <LocalSearchInput
+        value={filters.search}
+        onChange={(search) => onFiltersChange({ search })}
         placeholder={searchPlaceholder}
         className={cn(
           "w-full max-w-none",
@@ -149,7 +150,8 @@ export function LeagueFilterControls({
       {hasGameOptions && (
         <GameFilterCombobox
           games={games}
-          currentGame={filters.game}
+          currentGame={filters.game || undefined}
+          onGameChange={(slug) => onFiltersChange({ game: slug ?? "" })}
           placeholder={translations.gamePlaceholder}
           noResultsText={translations.noGamesFound}
           className="min-w-0"
@@ -187,31 +189,29 @@ export function LeagueFilterControls({
               {translations.sortLabel}
             </span>
             {SORT_OPTIONS.map((option) => {
-              const isActive = (filters.sort ?? "") === option.value;
+              const isActive = filters.sort === option.value;
               return (
-                <Link
+                <button
                   key={option.value || "_recent"}
-                  href={
-                    buildUrl(filters, {
-                      sort: option.value || undefined,
-                    }) as Route
-                  }
+                  type="button"
+                  onClick={() => onFiltersChange({ sort: option.value })}
                   className={cn(
                     chipBase,
                     isActive ? "border-gold/40 bg-gold/10 text-gold" : chipIdle,
                   )}
                 >
                   {translations[option.labelKey]}
-                </Link>
+                </button>
               );
             })}
             {hasActiveFilters && (
-              <Link
-                href={"/leagues" as Route}
+              <button
+                type="button"
+                onClick={resetFilters}
                 className="text-muted hover:text-foreground ml-auto text-xs underline underline-offset-2"
               >
                 {translations.clearFilters}
-              </Link>
+              </button>
             )}
           </div>
 
@@ -222,12 +222,13 @@ export function LeagueFilterControls({
             {STATUS_OPTIONS.map((option) => {
               const isActive = filters.status === option.value;
               return (
-                <Link
+                <button
                   key={option.value}
-                  href={
-                    buildUrl(filters, {
-                      status: isActive ? undefined : option.value,
-                    }) as Route
+                  type="button"
+                  onClick={() =>
+                    onFiltersChange({
+                      status: isActive ? "" : option.value,
+                    })
                   }
                   className={cn(
                     chipBase,
@@ -235,7 +236,7 @@ export function LeagueFilterControls({
                   )}
                 >
                   {translations[option.labelKey]}
-                </Link>
+                </button>
               );
             })}
           </div>
@@ -247,12 +248,13 @@ export function LeagueFilterControls({
             {SYSTEM_OPTIONS.map((option) => {
               const isActive = filters.system === option.value;
               return (
-                <Link
+                <button
                   key={option.value}
-                  href={
-                    buildUrl(filters, {
-                      system: isActive ? undefined : option.value,
-                    }) as Route
+                  type="button"
+                  onClick={() =>
+                    onFiltersChange({
+                      system: isActive ? "" : option.value,
+                    })
                   }
                   className={cn(
                     chipBase,
@@ -260,7 +262,7 @@ export function LeagueFilterControls({
                   )}
                 >
                   {translations[option.labelKey]}
-                </Link>
+                </button>
               );
             })}
           </div>

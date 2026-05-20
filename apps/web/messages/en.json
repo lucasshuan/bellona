@@ -265,8 +265,6 @@
     "participantsStat": "Participants",
     "registrationEventsStat": "Signups",
     "activeEventsStat": "Active",
-    "eventListTitle": "Game events",
-    "eventListDescription": "Leagues and tournaments stay together here. Use filters to find the right competition.",
     "eventListTitle": "Events",
     "eventListDescription": "Ongoing competitions with rankings, participants, and standings for this game.",
     "eventListSummary": "{shown} of {total}",

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronUp, ChevronDown, Search, Trophy } from "lucide-react";
+import { ChevronUp, ChevronDown, Globe, Search, Trophy } from "lucide-react";
 import { useState, useMemo } from "react";
 
 import { Link } from "@/i18n/routing";
@@ -578,7 +578,7 @@ export function TableCore({
                     />
                   </Tooltip>
                 ) : (
-                  <span className="text-xs text-white/15">—</span>
+                  <Globe className="size-3.5 text-white/25" />
                 )}
               </div>
 
