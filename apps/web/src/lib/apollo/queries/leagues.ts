@@ -110,6 +110,7 @@ export const GET_EVENT_ENTRIES = gql`
         imagePath
         entryStatus
         stats
+        createdAt
         user {
           id
           name
@@ -120,6 +121,23 @@ export const GET_EVENT_ENTRIES = gql`
       }
       totalCount
       hasNextPage
+    }
+  }
+`;
+
+export const GET_EVENT_STAFF = gql`
+  query GetEventStaff($eventId: ID!) {
+    eventStaff(eventId: $eventId) {
+      id
+      userId
+      capabilities
+      isFullAccess
+      user {
+        id
+        name
+        username
+        imagePath
+      }
     }
   }
 `;

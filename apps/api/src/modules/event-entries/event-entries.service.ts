@@ -9,6 +9,17 @@ import {
 } from './dto/event-entries.input';
 import { Prisma } from '@bellona/db';
 
+type EntryWithStats = { stats: Prisma.JsonValue | null };
+
+function withDefaultStats<T extends EntryWithStats>(
+  entry: T,
+): T & { stats: Prisma.JsonValue } {
+  return {
+    ...entry,
+    stats: entry.stats ?? {},
+  };
+}
+
 @Injectable()
 export class EventEntriesService {
   constructor(private db: DatabaseProvider) {}
@@ -29,14 +40,14 @@ export class EventEntriesService {
     ]);
 
     return {
-      nodes: entries,
+      nodes: entries.map(withDefaultStats),
       totalCount,
       hasNextPage: skip + take < totalCount,
     };
   }
 
   async findById(id: string) {
-    return this.db.eventEntry.findUnique({
+    const entry = await this.db.eventEntry.findUnique({
       where: { id },
       include: {
         user: true,
@@ -44,6 +55,7 @@ export class EventEntriesService {
         claims: { include: { user: true } },
       },
     });
+    return entry ? withDefaultStats(entry) : null;
   }
 
   async addEntry(input: CreateEventEntryInput) {
@@ -76,25 +88,29 @@ export class EventEntriesService {
       }
     }
 
-    return this.db.eventEntry.create({
-      data: {
-        eventId: input.eventId,
-        displayName: input.displayName,
-        imagePath: input.imagePath,
-        userId: input.userId,
-        entryStatus,
-        stats: Prisma.JsonNull,
-      },
-      include: { user: true, members: true },
-    });
+    return this.db.eventEntry
+      .create({
+        data: {
+          eventId: input.eventId,
+          displayName: input.displayName,
+          imagePath: input.imagePath,
+          userId: input.userId,
+          entryStatus,
+          stats: {},
+        },
+        include: { user: true, members: true },
+      })
+      .then(withDefaultStats);
   }
 
   async updateEntry(id: string, input: UpdateEventEntryInput) {
-    return this.db.eventEntry.update({
-      where: { id },
-      data: input,
-      include: { user: true, members: true },
-    });
+    return this.db.eventEntry
+      .update({
+        where: { id },
+        data: input,
+        include: { user: true, members: true },
+      })
+      .then(withDefaultStats);
   }
 
   async claimEntry(entryId: string, userId: string, input: ClaimEntryInput) {

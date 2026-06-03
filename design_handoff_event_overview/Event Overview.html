@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bellona — Event Overview</title>
+<link rel="stylesheet" href="tokens.css" />
+<link rel="stylesheet" href="overview.css" />
+</head>
+<body>
+<div class="grid-surface"></div>
+
+<div class="app-shell">
+
+  <!-- ── Top bar ─────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">B</span>
+      <b>Bellona</b>
+    </div>
+    <nav>
+      <a href="#">Games</a>
+      <a href="#" class="active">Leagues</a>
+      <a href="#">Players</a>
+      <a href="#">Forums</a>
+    </nav>
+    <div class="avatar" title="You"></div>
+  </header>
+
+  <!-- ── Hero ────────────────────────────────────────────── -->
+  <section class="hero" data-screen-label="Event hero">
+    <div class="hero-bg">
+      <div class="ph"></div>
+    </div>
+    <div class="ember-field" id="emberField"></div>
+
+    <div class="hero-inner">
+      <div class="hero-top">
+        <a class="backlink" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span class="thumb"></span>
+          <span>Back to Vanguard Strike</span>
+        </a>
+        <div class="hero-actions">
+          <button class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+            Follow · 412
+          </button>
+          <button class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line></svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-id">
+          <div class="event-thumb">
+            <span class="lbl">event banner · 920×430</span>
+          </div>
+          <div>
+            <div class="badges">
+              <span class="badge badge--type">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                League
+              </span>
+              <span class="badge badge--active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3" fill="currentColor"></circle></svg>
+                In progress
+              </span>
+              <span class="badge badge--reg">Elo · 1v1</span>
+            </div>
+            <p class="event-kicker">Crimson Circuit</p>
+            <h1 class="event-title">Crimson Circuit — Season III</h1>
+            <p class="event-sub">A ladder-style Elo league for the Vanguard Strike community. Climb the standings, defend your rating, and earn your place at the Season III finals.</p>
+          </div>
+        </div>
+
+        <!-- registration CTA -->
+        <div class="glass glow-border reg-card">
+          <div class="reg-head">
+            <div class="reg-count">128<span> / 160</span></div>
+            <div class="reg-label">Competitors</div>
+          </div>
+          <div class="reg-bar"><i style="width:80%"></i></div>
+          <button class="btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" y1="8" x2="19" y2="14"></line><line x1="22" y1="11" x2="16" y2="11"></line></svg>
+            Join the league
+          </button>
+          <div class="reg-meta"><span class="dot"></span> Registration closes Jun 14</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tab bar ─────────────────────────────────────────── -->
+  <div class="tabs-wrap">
+    <nav class="tabs" aria-label="Event sections">
+      <span class="tab-indicator" id="tabIndicator" style="width:20%;transform:translateX(0)">
+        <span class="fill"><span class="sheen"></span><span class="underline"></span></span>
+      </span>
+      <button class="tab active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Overview
+      </button>
+      <button class="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"></line><line x1="10" y1="12" x2="21" y2="12"></line><line x1="10" y1="18" x2="21" y2="18"></line><path d="M4 6h1v4"></path><path d="M4 10h2"></path><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"></path></svg>
+        Leaderboard
+      </button>
+      <button class="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Forum
+      </button>
+      <button class="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Players
+        <span class="count">128</span>
+      </button>
+      <button class="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v5h5"></path><path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"></path><path d="M12 7v5l4 2"></path></svg>
+        Matches
+      </button>
+    </nav>
+  </div>
+
+  <!-- ── Overview body ───────────────────────────────────── -->
+  <main class="body" data-screen-label="Overview tab">
+    <div class="cols">
+
+      <!-- main column -->
+      <div class="stack">
+
+        <!-- About -->
+        <section class="glass card-pad about">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">About</div>
+              <h2 class="section-title">How the season runs</h2>
+            </div>
+          </div>
+          <p>Season III runs over <strong>eight weeks</strong> of open-ladder play. Anyone on the roster can challenge anyone within range; results are recorded by a scorekeeper and your Elo updates the moment a match is confirmed.</p>
+          <p>The <strong>top 16</strong> competitors at the close of the regular season advance to a single-elimination finals bracket. Inactivity decay applies after 72 hours without a recorded match, so stay active to hold your seed.</p>
+          <hr class="rule" />
+          <h4>Format at a glance</h4>
+          <div class="fmt-grid">
+            <div class="fmt-cell"><div class="k">Rating</div><div class="v">Elo · K-32</div></div>
+            <div class="fmt-cell"><div class="k">Match type</div><div class="v">Best of 3</div></div>
+            <div class="fmt-cell"><div class="k">Draws</div><div class="v">Not allowed</div></div>
+            <div class="fmt-cell"><div class="k">Starting Elo</div><div class="v">1000</div></div>
+            <div class="fmt-cell"><div class="k">Decay after</div><div class="v">72 hours</div></div>
+            <div class="fmt-cell"><div class="k">Finals cut</div><div class="v">Top 16</div></div>
+          </div>
+        </section>
+
+        <!-- Standings preview -->
+        <section class="glass card-pad">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Standings</div>
+              <h2 class="section-title">Top of the ladder</h2>
+              <p class="section-desc">Live Elo rankings · updated after every recorded match</p>
+            </div>
+            <a class="link-more" href="#">Full leaderboard
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+          <table class="standings">
+            <thead>
+              <tr><th style="width:34px">#</th><th>Player</th><th class="num">W–L</th><th class="num">Δ</th><th class="num">Elo</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="rank r1">1</span></td>
+                <td><div class="player"><span class="pa"></span><div><div class="pn">vaelric</div><div class="pt">@vaelric</div></div></div></td>
+                <td class="num wl">31–6</td>
+                <td class="num delta up">+18</td>
+                <td class="num elo">1487</td>
+              </tr>
+              <tr>
+                <td><span class="rank r2">2</span></td>
+                <td><div class="player"><span class="pa"></span><div><div class="pn">Nyxen</div><div class="pt">@nyxen_gg</div></div></div></td>
+                <td class="num wl">28–9</td>
+                <td class="num delta up">+11</td>
+                <td class="num elo">1442</td>
+              </tr>
+              <tr>
+                <td><span class="rank r3">3</span></td>
+                <td><div class="player"><span class="pa"></span><div><div class="pn">Orin_Vale</div><div class="pt">@orinvale</div></div></div></td>
+                <td class="num wl">26–11</td>
+                <td class="num delta down">−7</td>
+                <td class="num elo">1418</td>
+              </tr>
+              <tr>
+                <td><span class="rank">4</span></td>
+                <td><div class="player"><span class="pa"></span><div><div class="pn">kessa.</div><div class="pt">@kessadot</div></div></div></td>
+                <td class="num wl">24–13</td>
+                <td class="num delta up">+9</td>
+                <td class="num elo">1389</td>
+              </tr>
+              <tr>
+                <td><span class="rank">5</span></td>
+                <td><div class="player"><span class="pa"></span><div><div class="pn">Halberd</div><div class="pt">@halberd</div></div></div></td>
+                <td class="num wl">23–14</td>
+                <td class="num delta up">+4</td>
+                <td class="num elo">1361</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Matches: recent + upcoming -->
+        <section class="glass card-pad">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">Matches</div>
+              <h2 class="section-title">Latest action</h2>
+            </div>
+            <a class="link-more" href="#">All matches
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+          <div class="match-cols">
+            <!-- Recent results -->
+            <div>
+              <div class="eyebrow" style="margin-bottom:10px">Recent results</div>
+              <div class="match-list">
+                <div class="match-row">
+                  <div class="match-side"><span class="pa"></span><span class="nm">vaelric</span></div>
+                  <div class="match-center">
+                    <div class="score"><span class="w">2</span> <span class="vs">–</span> <span class="l">0</span></div>
+                    <span class="margin-pill" style="color:var(--match-shutout);background:color-mix(in srgb,var(--match-shutout) 14%,transparent)">Shutout</span>
+                  </div>
+                  <div class="match-side right loser"><span class="pa"></span><span class="nm">Brixx</span></div>
+                </div>
+                <div class="match-row">
+                  <div class="match-side"><span class="pa"></span><span class="nm">Nyxen</span></div>
+                  <div class="match-center">
+                    <div class="score"><span class="w">2</span> <span class="vs">–</span> <span class="l">1</span></div>
+                    <span class="margin-pill" style="color:var(--match-close);background:color-mix(in srgb,var(--match-close) 14%,transparent)">Close</span>
+                  </div>
+                  <div class="match-side right loser"><span class="pa"></span><span class="nm">kessa.</span></div>
+                </div>
+                <div class="match-row">
+                  <div class="match-side loser"><span class="pa"></span><span class="nm">Tovik</span></div>
+                  <div class="match-center">
+                    <div class="score"><span class="l">1</span> <span class="vs">–</span> <span class="w">2</span></div>
+                    <span class="margin-pill" style="color:var(--match-moderate);background:color-mix(in srgb,var(--match-moderate) 14%,transparent)">Moderate</span>
+                  </div>
+                  <div class="match-side right"><span class="pa"></span><span class="nm">Orin_Vale</span></div>
+                </div>
+              </div>
+            </div>
+            <!-- Upcoming -->
+            <div>
+              <div class="eyebrow" style="margin-bottom:10px">Scheduled</div>
+              <div class="match-list">
+                <div class="match-row">
+                  <div class="match-side"><span class="pa"></span><span class="nm">Halberd</span></div>
+                  <div class="match-center">
+                    <div class="score vs"><span class="vs">VS</span></div>
+                    <div class="match-when">Today · 20:00</div>
+                  </div>
+                  <div class="match-side right"><span class="pa"></span><span class="nm">vaelric</span></div>
+                </div>
+                <div class="match-row">
+                  <div class="match-side"><span class="pa"></span><span class="nm">kessa.</span></div>
+                  <div class="match-center">
+                    <div class="score vs"><span class="vs">VS</span></div>
+                    <div class="match-when">Tomorrow · 18:30</div>
+                  </div>
+                  <div class="match-side right"><span class="pa"></span><span class="nm">Nyxen</span></div>
+                </div>
+                <div class="match-row">
+                  <div class="match-side"><span class="pa"></span><span class="nm">Brixx</span></div>
+                  <div class="match-center">
+                    <div class="score vs"><span class="vs">VS</span></div>
+                    <div class="match-when">Jun 06 · 21:00</div>
+                  </div>
+                  <div class="match-side right"><span class="pa"></span><span class="nm">Tovik</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- sidebar -->
+      <aside class="side">
+
+        <!-- Event info -->
+        <div class="glass info-card">
+          <div class="info-top"><span class="lbl">event banner · 368×150</span></div>
+          <div class="info-body">
+            <h3>Crimson Circuit — Season III</h3>
+            <dl class="dl">
+              <div class="row"><dt>Format</dt><dd>Elo ladder</dd></div>
+              <div class="row"><dt>Status</dt><dd class="status-active">In progress</dd></div>
+              <div class="sep"></div>
+              <div class="row"><dt>Season start</dt><dd>May 19, 2026</dd></div>
+              <div class="row"><dt>Season end</dt><dd>Jul 14, 2026</dd></div>
+              <div class="row"><dt>Registration</dt><dd>Open · ends Jun 14</dd></div>
+              <div class="sep"></div>
+              <div class="row"><dt>Competitors</dt><dd>128 / 160</dd></div>
+              <div class="row"><dt>Matches played</dt><dd>1,204</dd></div>
+              <div class="row"><dt>Created</dt><dd>May 02, 2026</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Staff -->
+        <div class="glass card-pad">
+          <div class="eyebrow" style="margin-bottom:14px">Run by</div>
+          <div class="staff-list">
+            <div class="staff-row">
+              <span class="pa"></span>
+              <div><div class="nm">SeraphZero</div><div class="role organizer">Organizer</div></div>
+            </div>
+            <div class="staff-row">
+              <span class="pa"></span>
+              <div><div class="nm">m0rrow</div><div class="role moderator">Moderator</div></div>
+            </div>
+            <div class="staff-row">
+              <span class="pa"></span>
+              <div><div class="nm">Pyre_Adler</div><div class="role scorekeeper">Scorekeeper</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recently joined -->
+        <div class="glass card-pad">
+          <div class="section-head" style="margin-bottom:14px">
+            <div class="eyebrow">Recently joined</div>
+            <a class="link-more" href="#">All
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+          <div class="chips">
+            <span class="chip"><span class="pa"></span>Vesk</span>
+            <span class="chip"><span class="pa"></span>juno.exe</span>
+            <span class="chip"><span class="pa"></span>Ravager</span>
+            <span class="chip"><span class="pa"></span>Lio</span>
+            <span class="chip"><span class="pa"></span>Thorne</span>
+            <span class="chip"><span class="pa"></span>+9</span>
+          </div>
+        </div>
+
+        <!-- Glow accent strip -->
+        <div class="glass glow-border glow-strip">
+          <b>// season note</b><br />
+          Defend your rating. Inactivity decay begins after 72h without a recorded match.
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Ember particles in hero
+  (function () {
+    const field = document.getElementById('emberField');
+    if (!field) return;
+    const N = 26;
+    for (let i = 0; i < N; i++) {
+      const e = document.createElement('span');
+      const r = Math.random();
+      e.className = 'ember' + (r > 0.82 ? ' ember--large' : r > 0.6 ? ' ember--bright' : '');
+      e.style.left = (Math.random() * 100) + '%';
+      e.style.animationDuration = (4 + Math.random() * 5) + 's';
+      e.style.animationDelay = (Math.random() * 6) + 's';
+      field.appendChild(e);
+    }
+  })();
+
+  // Tab interaction (demo — moves the slash indicator)
+  (function () {
+    const tabs = Array.from(document.querySelectorAll('.tabs .tab'));
+    const ind = document.getElementById('tabIndicator');
+    const n = tabs.length;
+    ind.style.width = (100 / n) + '%';
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => {
+        tabs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        ind.style.transform = 'translateX(' + (i * 100) + '%)';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

@@ -17,6 +17,7 @@ const eslintConfig = [
     ".next/**",
     "out/**",
     "build/**",
+    "src/lib/apollo/generated/**",
     "codegen.js",
     "next-env.d.ts",
     "eslint.config.mjs",

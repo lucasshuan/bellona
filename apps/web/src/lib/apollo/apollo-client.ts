@@ -7,7 +7,7 @@ import {
   ApolloClient,
   InMemoryCache,
 } from "@apollo/client-integration-nextjs";
-import { getServerAuthSession } from "@/auth";
+import { getServerAuthSession } from "@/lib/auth";
 import { env } from "@/env";
 import { logger } from "@/lib/server/logger";
 

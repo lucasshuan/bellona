@@ -167,7 +167,7 @@ export function LeagueCard({ league, game }: LeagueCardProps) {
   return (
     <Link
       href={`/games/${game}/events/${league.event?.slug ?? ""}` as Route}
-      className="glass-panel group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 select-none"
+      className="glass-panel glass-panel-interactive group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 select-none"
     >
       {/* Header: event title, game and quick metadata */}
       <div className="shrink-0 p-4 pb-3">

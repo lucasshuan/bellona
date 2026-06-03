@@ -22,7 +22,7 @@ import {
   SetGameStaffMutation,
   GetGamesSimpleQuery,
 } from "@/lib/apollo/generated/graphql";
-import { getServerAuthSession } from "@/auth";
+import { getServerAuthSession } from "@/lib/auth";
 import { canEditGame, canManageGames } from "@/lib/server/permissions";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { normalizeOptionalText, slugify } from "@/lib/utils/helpers";

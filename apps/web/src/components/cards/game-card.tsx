@@ -40,7 +40,7 @@ export function GameCard({
         "glass-panel group relative flex w-full flex-col overflow-hidden rounded-xl transition-all duration-300",
         isFollowHovered
           ? "no-hover"
-          : "hover:border-[color-mix(in_srgb,var(--gold)_45%,white)] hover:bg-[color-mix(in_srgb,var(--gold)_10%,transparent)]",
+          : "glass-panel-interactive hover:border-[color-mix(in_srgb,var(--gold)_45%,white)] hover:bg-[color-mix(in_srgb,var(--gold)_10%,transparent)]",
       )}
     >
       <Link

@@ -7,7 +7,7 @@ import {
   UPDATE_LEAGUE,
   DELETE_LEAGUE,
 } from "@/lib/apollo/queries/league-mutations";
-import { getServerAuthSession } from "@/auth";
+import { getServerAuthSession } from "@/lib/auth";
 import { canManageLeagues } from "@/lib/server/permissions";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { createSafeAction } from "@/lib/utils/action-utils";

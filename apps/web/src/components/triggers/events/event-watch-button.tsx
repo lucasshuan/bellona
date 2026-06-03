@@ -5,24 +5,27 @@ import { useMutation, useQuery } from "@apollo/client/react";
 import { useTranslations } from "next-intl";
 import { Bell, BellPlus, LoaderCircle, Users } from "lucide-react";
 
-import { cn, formatCompactNumber } from "@/lib/utils/helpers";
+import { AuthModal } from "@/components/modals/auth/auth-modal";
+import { HeroPillButton } from "@/components/ui/hero-pill-button";
 import { Tooltip } from "@/components/ui/tooltip";
 import { useUser } from "@/components/providers";
-import { AuthModal } from "@/components/modals/auth/auth-modal";
 import {
   EventFollowCountDocument,
   IsFollowingEventDocument,
   ToggleEventFollowDocument,
 } from "@/lib/apollo/generated/graphql";
+import { cn, formatCompactNumber } from "@/lib/utils/helpers";
 
 interface EventWatchButtonProps {
   eventId: string;
   followCount: number;
+  variant?: "default" | "hero";
 }
 
 export function EventWatchButton({
   eventId,
   followCount,
+  variant = "default",
 }: EventWatchButtonProps) {
   const t = useTranslations("EventPage");
   const { user } = useUser();
@@ -80,9 +83,47 @@ export function EventWatchButton({
     }
   };
 
+  const label = isFollowing ? t("heroFollowing") : t("heroFollow");
+  const pillLabel = `${label} · ${formatCompactNumber(displayCount)}`;
+
+  if (variant === "hero") {
+    return (
+      <>
+        <HeroPillButton
+          onClick={handleToggle}
+          disabled={loading}
+          aria-pressed={isFollowing}
+          className={cn(
+            isFollowing &&
+              "border-gold/40 bg-background-soft text-foreground shadow-[inset_0_0_0_1px_rgb(218_157_59/0.12)]",
+            loading && "cursor-wait",
+          )}
+        >
+          {loading ? (
+            <LoaderCircle className="size-[15px] shrink-0 animate-spin" />
+          ) : isFollowing ? (
+            <Bell
+              key={ringKey}
+              className="size-[15px] shrink-0 fill-current/20"
+            />
+          ) : (
+            <Bell className="size-[15px] shrink-0" />
+          )}
+          <span>{pillLabel}</span>
+        </HeroPillButton>
+        <AuthModal
+          isOpen={authModalOpen}
+          onClose={() => setAuthModalOpen(false)}
+          isPending={false}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <button
+        type="button"
         onClick={handleToggle}
         disabled={loading}
         aria-pressed={isFollowing}
@@ -101,7 +142,6 @@ export function EventWatchButton({
           />
         ) : null}
 
-        {/* Bell icon */}
         <span className="relative shrink-0">
           {loading ? (
             <LoaderCircle className="size-4 animate-spin" />
@@ -115,12 +155,10 @@ export function EventWatchButton({
           )}
         </span>
 
-        {/* Label */}
         <span className="relative flex-1 text-left text-sm">
           {isFollowing ? t("watching") : t("watchEvent")}
         </span>
 
-        {/* Follower count chip */}
         <Tooltip content={t("watchersTooltip", { count: displayCount })}>
           <span
             className={cn(

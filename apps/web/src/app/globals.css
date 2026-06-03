@@ -493,7 +493,7 @@ button:disabled {
   transition: border-color 0.2s ease;
 }
 
-.glass-panel:hover::after {
+.glass-panel-interactive:hover::after {
   border-color: var(--gold);
 }
 

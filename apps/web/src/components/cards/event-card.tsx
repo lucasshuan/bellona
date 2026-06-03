@@ -51,7 +51,7 @@ export function EventCard({ event }: EventCardProps) {
   return (
     <Link
       href={`/games/${gameSlug}/events/${eventSlug}` as Route}
-      className="glass-panel group hover:border-gold/35 hover:bg-gold/5 relative flex h-full min-h-80 flex-col overflow-hidden rounded-xl p-5 transition-all select-none active:scale-[0.99]"
+      className="glass-panel glass-panel-interactive group hover:border-gold/35 hover:bg-gold/5 relative flex h-full min-h-80 flex-col overflow-hidden rounded-xl p-5 transition-all select-none active:scale-[0.99]"
     >
       <div className="relative z-10 mb-4 flex shrink-0 items-start justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1.5">

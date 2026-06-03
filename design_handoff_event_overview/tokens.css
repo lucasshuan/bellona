@@ -1,0 +1,153 @@
+/* Bellona design tokens — mirrored from apps/web/src/app/globals.css */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --background: #0d0c0e;
+  --background-soft: #1d1b1f;
+  --background-deep: #0a080f;
+  --foreground: #ffffff;
+  --muted: #d4cecc;
+  --gold-dim: rgb(142, 89, 27);
+  --border: color-mix(in srgb, var(--gold-dim) 35%, transparent);
+  --card: rgb(18 16 20 / 0.9);
+  --card-strong: rgb(24 22 27 / 0.97);
+  --primary: #a4141b;
+  --primary-strong: #6d0d12;
+  --secondary: #e8d5a3;
+  --gold: #da9d3b;
+  --gold-dark: #1a1208;
+  --success: #10b981;
+  --danger: #ff7b7b;
+  --warning: #f5c66a;
+  --discord: #5865f2;
+
+  /* match-margin scale */
+  --match-draw: #e05c6f;
+  --match-near-draw: #f97316;
+  --match-close: #eab308;
+  --match-moderate: #84cc16;
+  --match-dominant: #22c55e;
+  --match-shutout: #06b6d4;
+
+  --radius-xl: 11px;
+  --radius-2xl: 14px;
+  --radius-3xl: 20px;
+  --radius-4xl: 26px;
+
+  --font-sans: "Outfit", "Aptos", "Segoe UI", sans-serif;
+  --font-display: "Cinzel", "Trajan Pro", "Cormorant Garamond", serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+
+  --maxw: 1280px;
+}
+
+@property --glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--background) 0%,
+    color-mix(in srgb, var(--background-soft) 80%, var(--background) 20%) 42%,
+    color-mix(in srgb, var(--background) 92%, black 8%) 100%
+  );
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01";
+}
+
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 35%, transparent);
+  color: var(--foreground);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ── Background trellis grid (fixed) ─────────────────────────── */
+.grid-surface { position: fixed; inset: 0; z-index: -50; pointer-events: none; overflow: hidden; }
+.grid-surface::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(45deg, transparent calc(50% - .5px), color-mix(in srgb, var(--border) 15%, transparent) calc(50% - .5px), color-mix(in srgb, var(--border) 15%, transparent) calc(50% + .5px), transparent calc(50% + .5px)),
+    linear-gradient(-45deg, transparent calc(50% - .5px), color-mix(in srgb, var(--border) 15%, transparent) calc(50% - .5px), color-mix(in srgb, var(--border) 15%, transparent) calc(50% + .5px), transparent calc(50% + .5px));
+  background-size: 70px 70px;
+  animation: trellis-drift 13s linear infinite;
+}
+.grid-surface::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, var(--background) 0%, transparent 14%),
+    radial-gradient(ellipse 90% 80% at 58% 45%, transparent 25%, rgb(8 7 8 / 0.65) 100%);
+}
+@keyframes trellis-drift { from { background-position: 0 0, 0 0; } to { background-position: 70px 70px, 70px 70px; } }
+
+/* ── Glass panel ─────────────────────────────────────────────── */
+.glass {
+  position: relative;
+  background: linear-gradient(180deg, var(--card-strong), var(--card));
+  border-radius: var(--radius-3xl);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 0.25);
+}
+.glass::after {
+  content: ""; position: absolute; inset: 0; border: 1px solid var(--border);
+  border-radius: inherit; pointer-events: none; z-index: 2; transition: border-color .2s ease;
+}
+.glass.hoverable:hover::after { border-color: var(--gold); }
+
+/* ── Glow border (animated conic) ───────────────────────────── */
+.glow-border { --glow-size: 1px; position: relative; isolation: isolate; border-radius: var(--radius-3xl); }
+.glow-border::before, .glow-border::after {
+  content: ""; position: absolute; inset: calc(-1 * var(--glow-size)); border-radius: inherit;
+  background: conic-gradient(from var(--glow-angle,0deg), transparent 0%, var(--gold) 10%, transparent 20%, transparent 50%, var(--primary) 60%, transparent 70%);
+  animation: glow-rotate 5s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude; padding: var(--glow-size);
+}
+.glow-border::after { filter: blur(11px); opacity: .45; }
+@keyframes glow-rotate { from { --glow-angle: 0deg; } to { --glow-angle: 360deg; } }
+
+/* ── Embers ──────────────────────────────────────────────────── */
+.ember-field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; filter: blur(.3px); z-index: 1; }
+.ember {
+  position: absolute; bottom: 0; width: 3px; height: 3px; border-radius: 50%;
+  background: var(--primary); box-shadow: 0 0 6px 2px color-mix(in srgb, var(--primary) 60%, transparent);
+  opacity: 0; animation: ember-rise linear infinite;
+}
+.ember--bright { width: 4px; height: 4px; background: #f97316; box-shadow: 0 0 8px 3px rgb(249 115 22 / .5); }
+.ember--large { width: 5px; height: 5px; background: #fbbf24; box-shadow: 0 0 10px 3px rgb(251 191 36 / .4); }
+@keyframes ember-rise {
+  0% { opacity: 0; transform: translateY(0) translateX(0) scale(1); }
+  10% { opacity: .9; } 60% { opacity: .5; }
+  100% { opacity: 0; transform: translateY(-340px) translateX(var(--ember-drift, 15px)) scale(.3); }
+}
+.ember:nth-child(odd) { --ember-drift: -12px; }
+.ember:nth-child(3n) { --ember-drift: 20px; }
+.ember:nth-child(4n+1) { --ember-drift: -25px; }
+
+/* ── Slash sheen (tab indicator) ─────────────────────────────── */
+@keyframes slash-sheen {
+  0% { transform: translateX(-200%); opacity: 0; }
+  8% { opacity: .7; } 22% { opacity: 0; }
+  38%, 100% { transform: translateX(650%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ember, .grid-surface::before, .glow-border::before, .glow-border::after { animation: none; }
+  .ember { display: none; }
+}

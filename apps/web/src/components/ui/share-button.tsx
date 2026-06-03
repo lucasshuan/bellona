@@ -4,9 +4,14 @@ import { useState, useCallback } from "react";
 import { Check, Share2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { HeroPillButton } from "@/components/ui/hero-pill-button";
 import { cn } from "@/lib/utils/helpers";
 
-export function ShareButton() {
+interface ShareButtonProps {
+  variant?: "default" | "hero";
+}
+
+export function ShareButton({ variant = "default" }: ShareButtonProps) {
   const t = useTranslations("Common");
   const [copied, setCopied] = useState(false);
 
@@ -21,8 +26,27 @@ export function ShareButton() {
     }
   }, [copied]);
 
+  if (variant === "hero") {
+    return (
+      <HeroPillButton
+        onClick={handleShare}
+        className={cn(
+          copied && "bg-background-soft text-foreground border-emerald-300/40",
+        )}
+      >
+        {copied ? (
+          <Check className="text-success size-[15px] shrink-0" />
+        ) : (
+          <Share2 className="size-[15px] shrink-0" />
+        )}
+        <span>{copied ? t("copied") : t("share")}</span>
+      </HeroPillButton>
+    );
+  }
+
   return (
     <button
+      type="button"
       onClick={handleShare}
       className={cn(
         "group relative flex h-10 w-36 items-center justify-center gap-2 overflow-hidden rounded-xl border font-medium text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.12),0_10px_24px_-16px_rgb(0_0_0/0.9)] transition-all duration-300 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.99]",

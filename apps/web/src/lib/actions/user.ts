@@ -4,7 +4,7 @@ import { getClient } from "@/lib/apollo/apollo-client";
 import { UPDATE_PROFILE } from "@/lib/apollo/queries/user-mutations";
 import { COMPLETE_ONBOARDING } from "@/lib/apollo/queries/onboarding-mutations";
 import { GET_USER } from "@/lib/apollo/queries/user";
-import { getServerAuthSession } from "@/auth";
+import { getServerAuthSession } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import {
   GetUserQuery,
